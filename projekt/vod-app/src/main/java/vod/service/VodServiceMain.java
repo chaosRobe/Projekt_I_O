@@ -24,6 +24,7 @@ public class VodServiceMain {
         //ProductDao movieDao = new MemProductDao();
         ApplicationContext context = new AnnotationConfigApplicationContext("vod");
         BakeryService service = context.getBean(BakeryService.class);
+        BakeryService service2 = context.getBean(BakeryService.class);
         //przygotowanie serwisu ma jedna impelemntacja, moze byc ich wiecej
         //ta impelemntacja potrzebuje w swoim konstruktorze dostarczyc obiekty dao
         //tu mamy znowu dwa intefejsy i trzeba sie zastanowic z których impelemntacji skorzystać
