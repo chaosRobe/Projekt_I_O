@@ -1,5 +1,7 @@
 package vod.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +10,7 @@ public class Bakery {
     private int id;
     private String name;
     private String logo; //url logo w przypadku UI będzie zaciągany dynamicznie
+    @JsonIgnore
     private List<Product> products = new ArrayList<>();//struktura kolekcyjna związaną z granymi filmami, uproszczone
 //relacja wiele do wiele
     public Bakery(int id, String name, String logo) {//konsturktor
