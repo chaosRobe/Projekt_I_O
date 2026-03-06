@@ -19,7 +19,7 @@ class SampleData {
         Baker kowalski = new Baker(1, "Wojciech", "Kowalski");
         Product chlebBanan = new Product(1, "Chleb Bananowy", "Chleb", kowalski, (float) 4.5);
         bind(chlebBanan, kowalski);
-        Bakery podStolem = new Bakery(1, "Pod Stolem", "logo.png");
+        Bakery podStolem = new Bakery(1, "Piekarnia - Pod Stolem", "logo.png");
         bind(podStolem, chlebBanan);
         products.add(chlebBanan);
         bakers.add(kowalski);
