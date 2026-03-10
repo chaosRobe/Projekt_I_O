@@ -3,6 +3,7 @@ package vod.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import vod.model.Bakery;
 import vod.model.Product;
 import vod.repository.BakeryDao;
@@ -12,7 +13,7 @@ import vod.service.BakeryService;
 import java.util.List;
 import java.util.logging.Logger;
 
-@Component
+@Service
 @Scope("prototype")
 public class BakeryServiceBean implements BakeryService {
 
@@ -21,7 +22,7 @@ public class BakeryServiceBean implements BakeryService {
     private BakeryDao bakeryDao;
     private ProductDao productDao;
 
-    @Autowired
+    //@Autowired
     public BakeryServiceBean(BakeryDao bakeryDao, ProductDao productDao) {
         log.info("creating bakery service bean");
         this.bakeryDao = bakeryDao;

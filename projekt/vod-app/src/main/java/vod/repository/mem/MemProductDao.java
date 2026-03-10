@@ -1,6 +1,7 @@
 package vod.repository.mem;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import vod.repository.ProductDao;
 import vod.model.Bakery;
 import vod.model.Baker;
@@ -9,7 +10,7 @@ import vod.model.Product;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component
+@Repository
 public class MemProductDao implements ProductDao {
     @Override
     public List<Product> findAll() {

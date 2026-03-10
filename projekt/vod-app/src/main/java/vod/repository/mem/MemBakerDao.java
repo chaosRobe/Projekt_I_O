@@ -1,12 +1,13 @@
 package vod.repository.mem;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import vod.repository.BakerDao;
 import vod.model.Baker;
 
 import java.util.List;
 
-@Component
+@Repository
 public class MemBakerDao implements BakerDao {
     @Override
     public List<Baker> findAll() {

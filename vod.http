@@ -1,0 +1,11 @@
+### GET request to example server
+GET http://localhost:8080/webapi/bakeries?phrase=abc
+custom-header: custom-value
+cookie: some-cookie=some-value
+###
+GET http://localhost:8080/webapi/bakeries/1
+Accept: application/xml
+
+###
+GET http://localhost:8080/webapi/product/1/bakeries
+Accept: application/json
