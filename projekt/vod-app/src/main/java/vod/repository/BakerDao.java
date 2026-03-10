@@ -12,5 +12,4 @@ public interface BakerDao {
 
     Baker add(Baker d);
 
-
 }

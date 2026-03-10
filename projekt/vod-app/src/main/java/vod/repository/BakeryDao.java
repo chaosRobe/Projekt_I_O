@@ -13,4 +13,5 @@ public interface BakeryDao {
 
     List<Bakery> findByMovie(Product m);
 
+    Bakery save(Bakery bakery);
 }

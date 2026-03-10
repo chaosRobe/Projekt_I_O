@@ -27,4 +27,12 @@ public class MemBakeryDao implements BakeryDao {
     public List<Bakery> findByMovie(Product m) {
         return SampleData.bakeries.stream().filter(c -> c.getProducts().contains(m)).collect(Collectors.toList());
     }
+
+    @Override
+    public Bakery save(Bakery bakery) {
+        int maxId = SampleData.bakeries.stream().sorted((c1,c2)-> c2.getId()-c1.getId()).findFirst().map(c->c.getId()).orElse(0);
+        bakery.setId(maxId+1);
+        SampleData.bakeries.add(bakery);
+        return bakery;
+    }
 }
