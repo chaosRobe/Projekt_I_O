@@ -52,5 +52,9 @@ public class BakeryServiceBean implements BakeryService {
         log.info("searching bakeries by product " + m.getId());
         return bakeryDao.findByMovie(m);
     }
-
+    @Override
+    public Bakery addBakery(Bakery b){
+        log.info("adding bakery " + b);
+        return bakeryDao.save(b);
+    }
 }

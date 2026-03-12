@@ -15,4 +15,5 @@ public interface BakeryService {
 
     List<Product> getProductsInBakery(Bakery c);
 
+    Bakery addBakery(Bakery b);
 }

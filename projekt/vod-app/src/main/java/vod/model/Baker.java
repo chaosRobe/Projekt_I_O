@@ -1,11 +1,14 @@
 package vod.model;
 
+import jakarta.validation.constraints.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Baker {
 
     private int id;
+    @NotNull
     private String firstName;
     private String lastName;
     private List<Product> products = new ArrayList<>();//relacja 1 do wielu

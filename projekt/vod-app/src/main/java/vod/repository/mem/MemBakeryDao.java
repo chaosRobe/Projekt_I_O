@@ -30,7 +30,11 @@ public class MemBakeryDao implements BakeryDao {
 
     @Override
     public Bakery save(Bakery bakery) {
-        int maxId = SampleData.bakeries.stream().sorted((c1,c2)-> c2.getId()-c1.getId()).findFirst().map(c->c.getId()).orElse(0);
+        int maxId = SampleData.bakeries.stream()
+                .sorted((c1,c2)->c2.getId()-c1.getId())
+                .findFirst()
+                .map(c->c.getId())
+                .orElse(0);
         bakery.setId(maxId+1);
         SampleData.bakeries.add(bakery);
         return bakery;

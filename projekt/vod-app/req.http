@@ -1,0 +1,21 @@
+
+### GET request to example server
+GET http://localhost:8080/webapi/bakeries
+
+
+### GET request to example server
+GET http://localhost:8080/webapi/bakeries/1
+
+
+### GET request to example server
+GET http://localhost:8080/webapi/products/1/bakeries
+
+###
+POST http://localhost:8080/webapi/bakeries
+Content-Type:  application/json
+
+{
+  "id": 3,
+  "name": "Piekharnia",
+  "logo": "logo.png"
+}

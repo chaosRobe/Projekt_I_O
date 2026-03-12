@@ -2,6 +2,7 @@ package vod.web.rest;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -51,5 +52,12 @@ public class BakeryRest {
             log.info("there's {} bakeries making product {}", bakeries.size(), product.getName());
             return ResponseEntity.ok(bakeries);
         }
+    }
+    @PostMapping("/bakeries")
+    ResponseEntity<Bakery> createBakery(@RequestBody Bakery bakery){
+        log.info("create bakery {}", bakery);
+        bakery = bakeryService.addBakery(bakery);
+        log.info("bakery created {}", bakery);
+        return ResponseEntity.status(HttpStatus.CREATED).body(bakery);
     }
 }

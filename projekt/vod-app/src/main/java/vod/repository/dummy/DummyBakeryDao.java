@@ -28,4 +28,7 @@ public class DummyBakeryDao implements BakeryDao {
     public List<Bakery> findByMovie(Product m) {
         return List.of();
     }
+
+    @Override
+    public Bakery save(Bakery bakery) {   return null;}
 }
