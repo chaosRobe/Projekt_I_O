@@ -16,24 +16,26 @@ GET http://localhost:8080/webapi/products
 ### GET request to example server
 GET http://localhost:8080/webapi/products/1
 
-### GET request to example server
+### POST request to example server
 POST http://localhost:8080/webapi/products
 Content-Type: application/json
 
 {
-    "id": 2,
-    "name": "Chleb Bananowy",
+    "id": 3,
+    "name": "Chleb Razowy",
     "type": "Chleb",
     "bakerId": 1,
     "rating": 4.5
 }
-###
+### GET request to example server
+GET http://localhost:8080/webapi/bakeries/1/products
+### POST request to example server
 POST http://localhost:8080/webapi/bakeries
 Content-Type:  application/json
 Accept-Language: it
 
 {
   "id": 3,
-  "name": " ",
+  "name": "Piekarnia - Nova",
   "logo": "logo.png"
 }

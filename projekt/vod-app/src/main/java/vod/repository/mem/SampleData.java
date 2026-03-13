@@ -25,6 +25,17 @@ class SampleData {
         products.add(chlebBanan);
         bakers.add(kowalski);
         bakeries.add(podStolem);
+
+        Baker kowalski2 = new Baker(2, "Adam", "Kowalski");
+        Product chlebZwykly = new Product(2, "Chleb Zwykly", "Chleb", kowalski, (float) 3);
+
+        Bakery nowa = new Bakery(2, "Piekarnia - Nova", "logo.png");
+        bind(nowa, chlebZwykly);
+        bind(nowa, chlebBanan);
+        bind(chlebZwykly, kowalski2);
+        products.add(chlebZwykly);
+        bakers.add(kowalski2);
+        bakeries.add(nowa);
        /*
         Baker smarzowski = new Baker(1, "Wojciech", "Smarzowski");
         Baker vega = new Baker(2, "Patryk", "Vega");
