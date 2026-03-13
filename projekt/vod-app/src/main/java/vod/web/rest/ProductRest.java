@@ -5,15 +5,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import vod.model.Bakery;
 import vod.model.Product;
 import vod.service.BakeryService;
 import vod.service.ProductService;
+import vod.web.rest.dto.ProductDTO;
 
 import java.util.List;
 import java.util.Locale;
@@ -56,5 +55,24 @@ public class ProductRest {
             log.info("there's {} bakeries making product {}", bakeries.size(), product.getName());
             return ResponseEntity.ok(bakeries);
         }
+    }
+
+    @PostMapping("/products")
+    ResponseEntity<?> addProduct(@RequestBody ProductDTO productDTO) {
+        log.info("addProduct {}", productDTO);
+        Product product = new Product();
+        product.setId(productDTO.getId());
+        product.setName(productDTO.getName());
+        product.setType(productDTO.getType());
+        product.setBaker(productService.getBakerById(productDTO.getBakerId()));
+        product.setRating(productDTO.getRating());
+
+        product = productService.addProduct(product);
+        log.info("{} product added", product);
+        return ResponseEntity.created(ServletUriComponentsBuilder
+                .fromCurrentRequestUri()
+                .path("/"+product.getId())
+                .build()
+                .toUri()).body(product);
     }
 }

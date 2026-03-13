@@ -71,4 +71,16 @@ public class BakeryRest {
         log.info("bakery created {}", bakery);
         return ResponseEntity.status(HttpStatus.CREATED).body(bakery);
     }
+    @GetMapping("/bakeries/{bakeryId}/products")
+    ResponseEntity<List<Product>> getProductsMadeByBakery(@PathVariable("bakeryId") int id){
+        log.info("retrive products from bakery {}", id);
+        Bakery bakery = bakeryService.getBakeryById(id);
+        if(bakery == null){
+            return ResponseEntity.notFound().build();
+        }else {
+            List<Product> products = bakeryService.getProductsInBakery(bakery);
+            log.info("there's {} products made by bakery {}", products.size(), bakery.getName());
+            return ResponseEntity.ok(products);
+        }
+    }
 }
