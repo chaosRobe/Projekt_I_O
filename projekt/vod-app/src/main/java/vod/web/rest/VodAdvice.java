@@ -1,17 +1,18 @@
-//package vod.web.rest;
+package vod.web.rest;
 
-//import lombok.RequiredArgsConstructor;
-//import org.springframework.stereotype.Controller;
-//import org.springframework.web.bind.WebDataBinder;
-//import org.springframework.web.bind.annotation.ControllerAdvice;
-// org.springframework.web.bind.annotation.InitBinder;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.InitBinder;
 
-//@ControllerAdvice
-//@RequiredArgsConstructor
-//public class VodAdvice {
 
-    //private final BakeryValidator bakeryValidator;
+@ControllerAdvice
+@RequiredArgsConstructor
+public class VodAdvice {
 
-    //@InitBinder
-    //void init(WebDataBinder binder) {binder.setValidator(bakeryValidator);}
-//}
+    private final BakeryValidator bakeryValidator;
+
+    @InitBinder("bakery")
+    void init(WebDataBinder binder) {binder.setValidator(bakeryValidator);}
+}

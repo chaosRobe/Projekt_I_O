@@ -28,7 +28,7 @@ Content-Type: application/json
     "rating": 4.5
 }
 ### GET request to example server
-GET http://localhost:8080/webapi/bakeries/1/products
+GET http://localhost:8080/webapi/bakeries/2/products
 ### POST request to example server
 POST http://localhost:8080/webapi/bakeries
 Content-Type:  application/json
