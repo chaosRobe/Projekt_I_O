@@ -1,6 +1,6 @@
 
 ### GET request to example server
-GET http://localhost:8080/webapi/bakeries
+GET http://localhost:8080/webapi/bakeries?phrase=foo
 
 
 ### GET request to example server

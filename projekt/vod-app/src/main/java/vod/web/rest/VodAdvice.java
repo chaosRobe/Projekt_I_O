@@ -1,12 +1,17 @@
 package vod.web.rest;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 
 
+@Slf4j
 @ControllerAdvice
 @RequiredArgsConstructor
 public class VodAdvice {
@@ -15,4 +20,10 @@ public class VodAdvice {
 
     @InitBinder("bakery")
     void init(WebDataBinder binder) {binder.setValidator(bakeryValidator);}
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException e) {
+        log.error("IllegalArgumentException", e);
+        return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).body(e.getMessage());
+    }
 }

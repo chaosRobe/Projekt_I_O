@@ -41,6 +41,9 @@ public class BakeryRest {
         log.info("phrase {}", phrase);
         log.info("custom-header {}", customHeader);
         log.info("some cookie {}", someCookie);
+        if(phrase != null && phrase.equals("foo")) {
+            throw new IllegalArgumentException("FOO!");
+        }
         List<Bakery> bakeries = bakeryService.getAllBakeries();
         log.info("{} bakeries found", bakeries.size());
         return bakeries;
