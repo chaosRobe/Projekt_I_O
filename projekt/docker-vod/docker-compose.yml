@@ -6,7 +6,7 @@ services:
       - SYS_NICE
     restart: always
     environment:
-      - MYSQL_DATABASE=vod
+      - MYSQL_DATABASE=vod_bakery
       - MYSQL_ROOT_PASSWORD=mysql
     ports:
       - '3306:3306'
