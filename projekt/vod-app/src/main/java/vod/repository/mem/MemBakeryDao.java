@@ -24,7 +24,7 @@ public class MemBakeryDao implements BakeryDao {
     }
 
     @Override
-    public List<Bakery> findByMovie(Product m) {
+    public List<Bakery> findByProduct(Product m) {
         return SampleData.bakeries.stream().filter(c -> c.getProducts().contains(m)).collect(Collectors.toList());
     }
 

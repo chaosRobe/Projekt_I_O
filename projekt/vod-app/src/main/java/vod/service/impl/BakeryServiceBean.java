@@ -50,7 +50,7 @@ public class BakeryServiceBean implements BakeryService {
     @Override
     public List<Bakery> getBakeriesByProduct(Product m) {
         log.info("searching bakeries by product " + m.getId());
-        return bakeryDao.findByMovie(m);
+        return bakeryDao.findByProduct(m);
     }
     @Override
     public Bakery addBakery(Bakery b){

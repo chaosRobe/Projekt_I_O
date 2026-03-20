@@ -57,7 +57,7 @@ public class ProductServiceBean implements ProductService {
 
     public List<Bakery> getBakeriesByProduct(Product m) {
         log.info("searching bakeries by product " + m.getId());
-        return bakeryDao.findByMovie(m);
+        return bakeryDao.findByProduct(m);
     }
 
     public Bakery getBakeryById(int id) {

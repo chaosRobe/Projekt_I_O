@@ -25,7 +25,7 @@ public class DummyBakeryDao implements BakeryDao {
     }
 
     @Override
-    public List<Bakery> findByMovie(Product m) {
+    public List<Bakery> findByProduct(Product m) {
         return List.of();
     }
 
