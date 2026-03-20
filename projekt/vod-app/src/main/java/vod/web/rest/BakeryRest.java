@@ -8,9 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.LocaleResolver;
 import vod.model.Bakery;
 import vod.model.Product;
@@ -19,7 +17,6 @@ import vod.service.ProductService;
 
 import java.util.List;
 import java.util.Locale;
-import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -32,8 +29,8 @@ public class BakeryRest {
     private final LocaleResolver localeResolver;
     private final BakeryValidator bakeryValidator;
 
-    @InitBinder
-    void initBinder(WebDataBinder binder) {binder.addValidators(bakeryValidator);}
+    //@InitBinder("bakery")
+   // void initBinder(WebDataBinder binder) {binder.addValidators(bakeryValidator);}
 
     @GetMapping("/bakeries")
     List<Bakery> getBakeries(@RequestParam(value = "phrase",required = false) String phrase, @RequestHeader(value = "custom-header",required = false) String customHeader,@CookieValue(value = "some-cookie",required = false) String someCookie) {

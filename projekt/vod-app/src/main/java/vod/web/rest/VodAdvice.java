@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,9 +16,13 @@ import org.springframework.web.bind.annotation.InitBinder;
 public class VodAdvice {
 
     private final BakeryValidator bakeryValidator;
+    private final ProductValidator productValidator;
 
     @InitBinder("bakery")
-    void init(WebDataBinder binder) {binder.setValidator(bakeryValidator);}
+    void initBinderForBakery(WebDataBinder binder) {binder.setValidator(bakeryValidator);}
+
+    @InitBinder("productDTO")
+    void initBinderForProduct(WebDataBinder binder) {binder.setValidator(productValidator);}
 
     @ExceptionHandler(IllegalArgumentException.class)
     ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException e) {

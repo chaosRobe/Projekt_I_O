@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -15,7 +17,7 @@ import vod.service.ProductService;
 import vod.web.rest.dto.ProductDTO;
 
 import java.util.List;
-import java.util.Locale;
+
 @RestController
 @RequiredArgsConstructor
 @Slf4j
@@ -25,6 +27,10 @@ public class ProductRest {
     private final ProductService productService;
     private final MessageSource messageSource;
     private  final LocaleResolver localeResolver;
+    private final ProductValidator productValidator;
+
+    //@InitBinder("productDTO")
+    //void initBinder(WebDataBinder binder) {binder.addValidators(productValidator);}
 
     @GetMapping("/products")
     List<Product> getProducts() {
@@ -58,7 +64,9 @@ public class ProductRest {
     }
 
     @PostMapping("/products")
-    ResponseEntity<?> addProduct(@RequestBody ProductDTO productDTO) {
+    ResponseEntity<?> addProduct(@Validated @RequestBody ProductDTO productDTO, Errors errors) {
+        log.info("about to add product {}", productDTO);
+        if (errors.hasErrors()) {return ResponseEntity.badRequest().build();}
         log.info("addProduct {}", productDTO);
         Product product = new Product();
         product.setId(productDTO.getId());

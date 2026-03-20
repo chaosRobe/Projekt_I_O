@@ -24,7 +24,7 @@ Content-Type: application/json
     "id": 3,
     "name": "Chleb Razowy",
     "type": "Chleb",
-    "bakerId": 1,
+
     "rating": 4.5
 }
 ### GET request to example server
@@ -35,7 +35,7 @@ Content-Type:  application/json
 Accept-Language: it
 
 {
-  "id": 3,
-  "name": "Piekarnia - Nova",
+  "id": 4,
+  "name": "Piekarnia - Novwa",
   "logo": "logo.png"
 }
