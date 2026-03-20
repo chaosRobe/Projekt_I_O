@@ -1,7 +1,5 @@
 package vod.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import vod.model.Bakery;
 import vod.repository.BakeryDao;
@@ -37,12 +35,12 @@ public class ProductServiceBean implements ProductService {
 
     public List<Product> getProductsByBaker(Baker d) {
         log.info("searching products by baker " + d.getId());
-        return productDao.findByDirector(d);
+        return productDao.findByBaker(d);
     }
 
     public List<Product> getProductsInBakery(Bakery c) {
         log.info("searching products baked in bakeries " + c.getId());
-        return productDao.findByCinema(c);
+        return productDao.findByBakery(c);
     }
 
     public Product getProductById(int id) {

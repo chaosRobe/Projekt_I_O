@@ -1,8 +1,6 @@
 package vod.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import vod.model.Bakery;
 import vod.model.Product;
@@ -38,7 +36,7 @@ public class BakeryServiceBean implements BakeryService {
     @Override
     public List<Product> getProductsInBakery(Bakery c) {
         log.info("searching products baked in bakery " + c.getId());
-        return productDao.findByCinema(c);
+        return productDao.findByBakery(c);
     }
 
     @Override

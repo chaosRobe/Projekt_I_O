@@ -23,12 +23,12 @@ public class MemProductDao implements ProductDao {
     }
 
     @Override
-    public List<Product> findByDirector(Baker d) {
+    public List<Product> findByBaker(Baker d) {
        return SampleData.products.stream().filter(m -> m.getBaker() == d).collect(Collectors.toList());
     }
 
     @Override
-    public List<Product> findByCinema(Bakery c) {
+    public List<Product> findByBakery(Bakery c) {
         return SampleData.products.stream().filter(m -> m.getBakeries().contains(c)).collect(Collectors.toList());
     }
 

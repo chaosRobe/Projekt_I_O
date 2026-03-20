@@ -12,9 +12,9 @@ public interface ProductDao {
 
     Product findById(int id);
 
-    List<Product> findByDirector(Baker d);
+    List<Product> findByBaker(Baker d);
 
-    List<Product> findByCinema(Bakery c);
+    List<Product> findByBakery(Bakery c);
 
     Product add(Product m);
 

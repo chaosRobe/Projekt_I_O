@@ -13,8 +13,11 @@ public class Baker {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name="firstname")
     private String firstName;
+    @Column(name="lastname")
     private String lastName;
+
     @OneToMany(mappedBy = "baker")
     @JsonIgnore
     private List<Product> products = new ArrayList<>();//relacja 1 do wielu

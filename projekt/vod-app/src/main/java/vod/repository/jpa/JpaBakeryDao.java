@@ -11,7 +11,7 @@ import vod.repository.BakeryDao;
 import java.util.List;
 
 @Repository
-@Primary
+
 public class JpaBakeryDao implements BakeryDao {
     @PersistenceContext
     private EntityManager em;
