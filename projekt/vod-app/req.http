@@ -23,10 +23,9 @@ POST http://localhost:8080/webapi/products
 Content-Type: application/json
 
 {
-    "id": 3,
     "name": "Chleb Razowy",
     "type": "Chleb",
-
+    "bakerId": 1,
     "rating": 4.5
 }
 ### GET request to example server
