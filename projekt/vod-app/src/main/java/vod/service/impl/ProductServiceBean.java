@@ -1,6 +1,14 @@
 package vod.service.impl;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 import vod.model.Bakery;
 import vod.repository.BakeryDao;
 import vod.repository.BakerDao;
@@ -13,19 +21,24 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @Service
+@RequiredArgsConstructor
 public class ProductServiceBean implements ProductService {
 
     private static final Logger log = Logger.getLogger(ProductService.class.getName());
+    private final PlatformTransactionManager transactionManager;
+
+
 
     private BakerDao bakerDao;
     private BakeryDao bakeryDao;
     private ProductDao productDao;
 
-    //@Autowired
-    public ProductServiceBean(BakerDao bakerDao, BakeryDao bakeryDao, ProductDao productDao) {
+    @Autowired
+    public ProductServiceBean(BakerDao bakerDao, BakeryDao bakeryDao, ProductDao productDao, PlatformTransactionManager transactionManager) {
         this.bakerDao = bakerDao;
         this.bakeryDao = bakeryDao;
         this.productDao = productDao;
+        this.transactionManager = transactionManager;
     }
 
     public List<Product> getAllProducts() {
@@ -73,12 +86,40 @@ public class ProductServiceBean implements ProductService {
         return bakerDao.findById(id);
     }
 
-    @Override
+   /* @Override
     public Product addProduct(Product m) {
         log.info("about to add product " + m);
         return productDao.add(m);
-    }
+    }*/
 
+    /*
+    @Override
+    public Product addProduct(Product m) {
+        log.info("about to add product " + m);
+        TransactionStatus ts = transactionManager.getTransaction(new DefaultTransactionDefinition());
+        try {
+            m = productDao.add(m);
+            if(m.getName().equals("GG")){
+                throw new RuntimeException("GG");
+            }
+            transactionManager.commit(ts);
+        }catch(RuntimeException e){
+            transactionManager.rollback(ts);
+            throw e;
+        }
+        return m;
+    }
+    */
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public Product addProduct(Product m) {
+        log.info("about to add product " + m);
+        m = productDao.add(m);
+        if (m.getName().equals("GGs")) {
+            throw new RuntimeException("GGs");
+        }
+        return m;
+    }
     @Override
     public Baker addBaker(Baker d) {
         log.info("about to add baker " + d);

@@ -23,7 +23,7 @@ POST http://localhost:8080/webapi/products
 Content-Type: application/json
 
 {
-    "name": "Chleb Razowy",
+    "name": "GG",
     "type": "Chleb",
     "bakerId": 1,
     "rating": 4.5
