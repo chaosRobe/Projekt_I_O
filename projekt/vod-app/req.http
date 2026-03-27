@@ -34,11 +34,12 @@ GET http://localhost:8080/webapi/bakeries/2/products
 POST http://localhost:8080/webapi/bakeries
 Content-Type:  application/json
 Accept-Language: it
+Authorization: Basic user1 user1
 
 {
-  "id": 4,
   "name": "Piekarnia - Novwa",
   "logo": "logo.png"
+
 }
 ###
 POST http://localhost:8080/actuator/shutdown
