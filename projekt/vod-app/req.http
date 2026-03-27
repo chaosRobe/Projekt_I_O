@@ -40,3 +40,5 @@ Accept-Language: it
   "name": "Piekarnia - Novwa",
   "logo": "logo.png"
 }
+###
+POST http://localhost:8080/actuator/shutdown
