@@ -13,7 +13,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
@@ -21,11 +24,26 @@ import org.springframework.security.web.SecurityFilterChain;
 public class VodSecurityConfig {
     @Bean
     PasswordEncoder passwordEncoder() {return NoOpPasswordEncoder.getInstance();}
+    /*
+UserDetails user1 = User.withUsername("user1").password("user1").roles("ADMIN").build();
+UserDetails user2 = User.withUsername("user2").password("user2").roles("REGULAR").build();
+return new InMemoryUserDetailsManager(user1, user2);
+*/
     @Bean
-UserDetailsService userDetailsService() {
-    UserDetails user1 = User.withUsername("user1").password("user1").roles("ADMIN").build();
-    UserDetails user2 = User.withUsername("user2").password("user2").roles("REGULAR").build();
-    return new InMemoryUserDetailsManager(user1, user2);
+    UserDetailsService userDetailsService(DataSource dataSource) {
+        JdbcUserDetailsManager detailsManager = new JdbcUserDetailsManager(dataSource);
+
+
+        detailsManager.setUsersByUsernameQuery(
+                "SELECT username, password, true FROM user WHERE username=?"
+        );
+
+
+        detailsManager.setAuthoritiesByUsernameQuery(
+                "SELECT username, role FROM role WHERE username=?"
+        );
+
+        return detailsManager;
     }
 
 /*

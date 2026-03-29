@@ -1,6 +1,7 @@
 package vod.service.impl;
 
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import vod.model.Bakery;
 import vod.model.Product;
@@ -50,6 +51,7 @@ public class BakeryServiceBean implements BakeryService {
         log.info("searching bakeries by product " + m.getId());
         return bakeryDao.findByProduct(m);
     }
+    @PreAuthorize("hasRole('ADMIN')")
     @Override
     public Bakery addBakery(Bakery b){
         log.info("adding bakery " + b);

@@ -12,7 +12,7 @@ public class BakeryValidator implements Validator {
     private final BakeryService bakeryService;
 
     @Override
-    public boolean supports(Class<?> clazz) {return clazz.isAssignableFrom(Bakery.class);}
+    public boolean supports(Class<?> clazz) {return Bakery.class.isAssignableFrom(clazz);}
 
     @Override
     public void validate(Object target, Errors errors){

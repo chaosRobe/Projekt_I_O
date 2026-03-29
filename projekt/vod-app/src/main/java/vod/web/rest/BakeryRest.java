@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -67,10 +69,14 @@ public class BakeryRest {
             return ResponseEntity.badRequest().body(message);
         }
         log.info("create bakery {}", bakery);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        log.info("authentication {}", authentication);
+        log.info("authentication name {}", authentication.getName());
         bakery = bakeryService.addBakery(bakery);
         log.info("bakery created {}", bakery);
         return ResponseEntity.status(HttpStatus.CREATED).body(bakery);
     }
+
     @GetMapping("/bakeries/{bakeryId}/products")
     ResponseEntity<List<Product>> getProductsMadeByBakery(@PathVariable("bakeryId") int id){
         log.info("retrive products from bakery {}", id);

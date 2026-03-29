@@ -19,10 +19,10 @@ public class VodAdvice {
     private final ProductValidator productValidator;
 
     @InitBinder("bakery")
-    void initBinderForBakery(WebDataBinder binder) {binder.setValidator(bakeryValidator);}
+    void initBinderForBakery(WebDataBinder binder) {binder.addValidators(bakeryValidator);}
 
     @InitBinder("productDTO")
-    void initBinderForProduct(WebDataBinder binder) {binder.setValidator(productValidator);}
+    void initBinderForProduct(WebDataBinder binder) {binder.addValidators(productValidator);}
 
     @ExceptionHandler(IllegalArgumentException.class)
     ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException e) {

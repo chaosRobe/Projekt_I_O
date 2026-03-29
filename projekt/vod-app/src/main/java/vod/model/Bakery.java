@@ -12,7 +12,7 @@ import java.util.List;
 public class Bakery {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @NotNull
     @Size(min = 2, max = 20)
@@ -25,7 +25,7 @@ public class Bakery {
     @JsonIgnore
     private List<Product> products = new ArrayList<>();//struktura kolekcyjna związaną z granymi filmami, uproszczone
 //relacja wiele do wiele
-    public Bakery(int id, String name, String logo) {//konsturktor
+    public Bakery(Integer id, String name, String logo) {//konsturktor
         this.id = id;
         this.name = name;
         this.logo = logo;

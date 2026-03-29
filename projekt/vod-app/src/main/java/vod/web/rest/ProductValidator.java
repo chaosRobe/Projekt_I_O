@@ -14,7 +14,7 @@ public class ProductValidator implements Validator {
     private final ProductService productService;
 
     @Override
-    public boolean supports(Class<?> clazz) {return clazz.isAssignableFrom(ProductDTO.class);}
+    public boolean supports(Class<?> clazz) {return ProductDTO.class.isAssignableFrom(clazz);}
 
     @Override
     public void validate(Object target, Errors errors){

@@ -9,7 +9,7 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String name;
     private String type;//url
     @ManyToOne
@@ -22,7 +22,7 @@ public class Product {
     private List<Bakery> bakeries = new ArrayList<>();
 //relacja wiele do wiele - bidirectional
 
-    public Product(int id, String name, String type, Baker baker, float rating) {
+    public Product(Integer id, String name, String type, Baker baker, float rating) {
         this.id = id;
         this.name = name;
         this.type = type;

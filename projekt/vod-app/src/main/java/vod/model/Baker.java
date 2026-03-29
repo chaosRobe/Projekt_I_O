@@ -11,7 +11,7 @@ public class Baker {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name="firstname")
     private String firstName;
@@ -24,7 +24,7 @@ public class Baker {
 //listy zeby przey przełączniu na SpringDate nie było komplikacji
 //lista od seta różni się tym że są w niej powtórzenia oraz trzymamy kolejność wrzucania
     //struktury danych wazna rzecz w zachowaniu spójności danych w warstwie aplikacyjnej
-    public Baker(int id, String firstName, String lastName) {
+    public Baker(Integer id, String firstName, String lastName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
