@@ -1,0 +1,20 @@
+### GET all cienmas
+GET http://localhost:8080/webapi/movies
+### GET all cienmas
+GET http://localhost:8080/webapi/movies/8
+
+### GET cinema
+GET http://localhost:8080/webapi/directors/1/movies
+Accept: application/json
+### POST new cinema
+POST http://localhost:8080/webapi/cinemas
+Content-Type: application/json
+Authorization: Basic dbuser1 dbuser1
+
+{
+"title": "Kinoteka Jeszcze",
+"poster": "logo.png",
+"rating": 4.5,
+"directorId": 3
+}
+###
