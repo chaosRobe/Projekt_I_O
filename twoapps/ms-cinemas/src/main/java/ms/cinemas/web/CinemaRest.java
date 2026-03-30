@@ -1,10 +1,14 @@
 package ms.cinemas.web;
 
 
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import ms.cinemas.dao.CinemaRepository;
 import ms.cinemas.model.Cinema;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -19,25 +23,39 @@ public class CinemaRest {
 
     private final CinemaRepository cinemaRepository;
 
-
+    @Value("http://localhost:8090/webapi")
     private String movieServiceUrl;
+
     @GetMapping("/cinemas")
     public List<Cinema> getCinemas() {
         log.info("about to retrieve all cinemas");
-        return cinemaRepository.findAll();
+        List<Cinema> cinemas = cinemaRepository.findAll();
+        cinemas.forEach(this::fillMovieNames);
+        return cinemas;
     }
 
     @GetMapping("/movies/{id}/cinemas")
     public List<Cinema> getCinemasByMovie(@PathVariable int id) {
         log.info("about to retrieve cinemas by movie {}", id);
-        return cinemaRepository.findCinemasByMoviesIsContaining(id);
+        List<Cinema> cinemas = cinemaRepository.findCinemasByMoviesIsContaining(id);
+        cinemas.forEach(this::fillMovieNames);
+        return cinemas;
     }
     private void fillMovieNames(Cinema cinema) {
         cinema.getMovies().forEach(movieId -> {
             RestTemplate restTemplate = new RestTemplate();
             ResponseEntity<MovieDTO> responseEntity = restTemplate.exchange(
-                    movieServiceUrl
+                    movieServiceUrl+"/movies/"+movieId, HttpMethod.GET, HttpEntity.EMPTY,MovieDTO.class
             );
+            String movieName = responseEntity.getBody().getTitle();
+            cinema.getMovieNames().add(movieName);
         });
+    }
+    @Data
+    static class MovieDTO{
+        private int id;
+        private String title;
+        private String poster;
+        private float rating;
     }
 }
